@@ -1,0 +1,21 @@
+{
+  "name": "task-manager",
+  "version": "1.0.0",
+  "description": "Full-stack Task Manager with Angular 22 + NestJS + Neon PostgreSQL",
+  "private": true,
+  "scripts": {
+    "install:all": "cd apps/api && npm install && cd ../web && npm install",
+    "build:api": "cd apps/api && npx nest build",
+    "build:web": "cd apps/web && npx ng build",
+    "build": "npm run build:api && npm run build:web",
+    "start:api": "cd apps/api && npm run start:dev",
+    "start:web": "cd apps/web && npm run start",
+    "start": "concurrently \"npm run start:api\" \"npm run start:web\"",
+    "test:api": "cd apps/api && npm test",
+    "test:web": "cd apps/web && npm test",
+    "seed": "cd apps/api && SEED_DB=true npm run start:dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
