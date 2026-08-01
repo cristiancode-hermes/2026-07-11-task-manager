@@ -13,14 +13,14 @@ import { Task } from '../models';
   template: `
     <div class="min-h-screen bg-secondary-100">
       <!-- Navbar -->
-      <nav class="bg-white shadow-sm border-b border-secondary-200">
+      <nav class="bg-secondary-100  border-b border-secondary-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between items-center h-16">
             <h1 class="text-xl font-bold text-secondary-900">Task Manager</h1>
             <div class="flex items-center gap-4">
               <span class="text-sm text-secondary-500">{{ auth.currentUser()?.name }}</span>
               <button (click)="logout()"
-                class="text-sm text-secondary-500 hover:text-red-600 transition-colors">Sign Out</button>
+                class="text-sm text-secondary-500 hover:text-error transition-colors">Sign Out</button>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@ import { Task } from '../models';
             <p class="text-secondary-500 mt-1">{{ tasks().length }} task(s)</p>
           </div>
           <button (click)="showCreateForm.set(true)"
-            class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-lg font-medium transition-colors text-sm">
+            class="bg-primary-600 hover:bg-primary-700 text-ink px-5 py-2.5 rounded-md font-medium transition-colors text-sm">
             + New Task
           </button>
         </div>
@@ -43,10 +43,10 @@ import { Task } from '../models';
         <div class="flex gap-2 mb-6">
           @for (f of filters; track f.value) {
             <button (click)="selectedFilter.set(f.value)"
-              class="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              class="px-4 py-2 rounded-md text-sm font-medium transition-colors"
               [class.bg-primary-600]="selectedFilter() === f.value"
-              [class.text-white]="selectedFilter() === f.value"
-              [class.bg-white]="selectedFilter() !== f.value"
+              [class.text-ink]="selectedFilter() === f.value"
+              [class.bg-secondary-100]="selectedFilter() !== f.value"
               [class.text-secondary-600]="selectedFilter() !== f.value"
               [class.hover:bg-secondary-50]="selectedFilter() !== f.value"
               [class.border]="selectedFilter() !== f.value"
@@ -58,7 +58,7 @@ import { Task } from '../models';
 
         <!-- Create / Edit Form -->
         @if (showCreateForm() || editingTask()) {
-          <div class="bg-white rounded-xl shadow-sm border border-secondary-200 p-6 mb-6">
+          <div class="bg-secondary-100 rounded-md  border border-secondary-200 p-6 mb-6">
             <h3 class="text-lg font-semibold text-secondary-900 mb-4">
               {{ editingTask() ? 'Edit Task' : 'New Task' }}
             </h3>
@@ -66,18 +66,18 @@ import { Task } from '../models';
               <div>
                 <label class="block text-sm font-medium text-secondary-700 mb-1">Title *</label>
                 <input type="text" [(ngModel)]="formTitle" name="title" required
-                  class="w-full px-4 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none">
+                  class="w-full px-4 py-2 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 outline-none">
               </div>
               <div>
                 <label class="block text-sm font-medium text-secondary-700 mb-1">Description</label>
                 <textarea [(ngModel)]="formDescription" name="description" rows="3"
-                  class="w-full px-4 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"></textarea>
+                  class="w-full px-4 py-2 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 outline-none"></textarea>
               </div>
               <div class="grid grid-cols-3 gap-4">
                 <div>
                   <label class="block text-sm font-medium text-secondary-700 mb-1">Priority</label>
                   <select [(ngModel)]="formPriority" name="priority"
-                    class="w-full px-4 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none">
+                    class="w-full px-4 py-2 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 outline-none">
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
@@ -86,7 +86,7 @@ import { Task } from '../models';
                 <div>
                   <label class="block text-sm font-medium text-secondary-700 mb-1">Status</label>
                   <select [(ngModel)]="formStatus" name="status"
-                    class="w-full px-4 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none">
+                    class="w-full px-4 py-2 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 outline-none">
                     <option value="pending">Pending</option>
                     <option value="in_progress">In Progress</option>
                     <option value="completed">Completed</option>
@@ -95,14 +95,14 @@ import { Task } from '../models';
                 <div>
                   <label class="block text-sm font-medium text-secondary-700 mb-1">Due Date</label>
                   <input type="date" [(ngModel)]="formDueDate" name="dueDate"
-                    class="w-full px-4 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none">
+                    class="w-full px-4 py-2 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 outline-none">
                 </div>
               </div>
               <div class="flex gap-3 justify-end">
                 <button type="button" (click)="cancelForm()"
                   class="px-4 py-2 text-secondary-600 hover:text-secondary-800 transition-colors">Cancel</button>
                 <button type="submit" [disabled]="loading()"
-                  class="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50">
+                  class="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-ink rounded-md font-medium transition-colors disabled:opacity-50">
                   {{ editingTask() ? 'Update' : 'Create' }}
                 </button>
               </div>
@@ -120,7 +120,7 @@ import { Task } from '../models';
 
         <!-- Error -->
         @if (error()) {
-          <div class="bg-red-50 text-red-600 px-4 py-3 rounded-lg mb-4">
+          <div class="bg-error-bg text-error px-4 py-3 rounded-md mb-4">
             {{ error() }}
             <button (click)="loadTasks()" class="ml-2 underline">Retry</button>
           </div>
@@ -128,12 +128,12 @@ import { Task } from '../models';
 
         <!-- Empty State -->
         @if (!loading() && !error() && tasks().length === 0) {
-          <div class="text-center py-16 bg-white rounded-xl border border-secondary-200">
+          <div class="text-center py-16 bg-secondary-100 rounded-md border border-secondary-200">
             <div class="text-5xl mb-4">📋</div>
             <h3 class="text-lg font-semibold text-secondary-900 mb-2">No tasks yet</h3>
             <p class="text-secondary-500 mb-4">Create your first task to get started</p>
             <button (click)="showCreateForm.set(true)"
-              class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-lg font-medium transition-colors text-sm">
+              class="bg-primary-600 hover:bg-primary-700 text-ink px-5 py-2.5 rounded-md font-medium transition-colors text-sm">
               + Create Task
             </button>
           </div>
@@ -143,7 +143,7 @@ import { Task } from '../models';
         @if (!loading() && tasks().length > 0) {
           <div class="space-y-3">
             @for (task of filteredTasks(); track task.id) {
-              <div class="bg-white rounded-xl border border-secondary-200 p-5 hover:shadow-md transition-shadow">
+              <div class="bg-secondary-100 rounded-md border border-secondary-200 p-5 hover: transition-">
                 <div class="flex items-start justify-between">
                   <div class="flex-1">
                     <div class="flex items-center gap-3 mb-1">
@@ -157,17 +157,17 @@ import { Task } from '../models';
                         [class.text-green-700]="task.status === 'completed'"
                         [class.bg-yellow-100]="task.status === 'in_progress'"
                         [class.text-yellow-700]="task.status === 'in_progress'"
-                        [class.bg-gray-100]="task.status === 'pending'"
-                        [class.text-gray-600]="task.status === 'pending'">
+                        [class.bg-surface-alt]="task.status === 'pending'"
+                        [class.text-ink-secondary]="task.status === 'pending'">
                         {{ task.status.replace('_', ' ') }}
                       </span>
                       <span class="text-xs px-2 py-0.5 rounded-full font-medium"
-                        [class.bg-red-100]="task.priority === 'high'"
-                        [class.text-red-700]="task.priority === 'high'"
+                        [class.bg-error-bg]="task.priority === 'high'"
+                        [class.text-error]="task.priority === 'high'"
                         [class.bg-blue-100]="task.priority === 'medium'"
                         [class.text-blue-700]="task.priority === 'medium'"
-                        [class.bg-gray-100]="task.priority === 'low'"
-                        [class.text-gray-600]="task.priority === 'low'">
+                        [class.bg-surface-alt]="task.priority === 'low'"
+                        [class.text-ink-secondary]="task.priority === 'low'">
                         {{ task.priority }}
                       </span>
                     </div>
@@ -189,7 +189,7 @@ import { Task } from '../models';
                       </svg>
                     </button>
                     <button (click)="deleteTask(task.id)"
-                      class="text-secondary-400 hover:text-red-600 transition-colors p-1">
+                      class="text-secondary-400 hover:text-error transition-colors p-1">
                       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                       </svg>

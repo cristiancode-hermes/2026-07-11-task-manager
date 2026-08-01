@@ -9,14 +9,14 @@ import { AuthService } from '../services/auth.service';
   imports: [RouterLink, FormsModule],
   template: `
     <div class="min-h-screen flex items-center justify-center bg-secondary-100">
-      <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 m-4">
+      <div class="w-full max-w-md bg-secondary-100 rounded-md  p-8 m-4">
         <div class="text-center mb-8">
           <h1 class="text-3xl font-bold text-secondary-900">Task Manager</h1>
           <p class="text-secondary-500 mt-2">Sign in to your account</p>
         </div>
 
         @if (error()) {
-          <div class="bg-red-50 text-red-600 px-4 py-3 rounded-lg mb-4 text-sm">
+          <div class="bg-error-bg text-error px-4 py-3 rounded-md mb-4 text-sm">
             {{ error() }}
           </div>
         }
@@ -25,17 +25,17 @@ import { AuthService } from '../services/auth.service';
           <div>
             <label class="block text-sm font-medium text-secondary-700 mb-1">Email</label>
             <input type="email" [(ngModel)]="email" name="email" required
-              class="w-full px-4 py-2.5 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
+              class="w-full px-4 py-2.5 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
               placeholder="you@example.com">
           </div>
           <div>
             <label class="block text-sm font-medium text-secondary-700 mb-1">Password</label>
             <input type="password" [(ngModel)]="password" name="password" required
-              class="w-full px-4 py-2.5 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
+              class="w-full px-4 py-2.5 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
               placeholder="••••••••">
           </div>
           <button type="submit" [disabled]="loading()"
-            class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-2.5 rounded-lg transition-colors disabled:opacity-50">
+            class="w-full bg-primary-600 hover:bg-primary-700 text-ink font-medium py-2.5 rounded-md transition-colors disabled:opacity-50">
             @if (loading()) { Signing in... } @else { Sign In }
           </button>
         </form>
