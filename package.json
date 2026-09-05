@@ -4,18 +4,22 @@
   "description": "Full-stack Task Manager with Angular 22 + NestJS + Neon PostgreSQL",
   "private": true,
   "scripts": {
-    "install:all": "cd apps/api && npm install && cd ../web && npm install",
+    "install:all": "cd apps/api && pnpm install && cd ../web && pnpm install",
     "build:api": "cd apps/api && npx nest build",
     "build:web": "cd apps/web && npx ng build",
-    "build": "npm run build:api && npm run build:web",
-    "start:api": "cd apps/api && npm run start:dev",
-    "start:web": "cd apps/web && npm run start",
-    "start": "concurrently \"npm run start:api\" \"npm run start:web\"",
-    "test:api": "cd apps/api && npm test",
-    "test:web": "cd apps/web && npm test",
-    "seed": "cd apps/api && SEED_DB=true npm run start:dev"
+    "build": "pnpm run build:api && pnpm run build:web",
+    "start:api": "cd apps/api && pnpm run start:dev",
+    "start:web": "cd apps/web && pnpm run start",
+    "start": "concurrently \"pnpm run start:api\" \"pnpm run start:web\"",
+    "test:api": "cd apps/api && pnpm test",
+    "test:web": "cd apps/web && pnpm test",
+    "seed": "cd apps/api && SEED_DB=true pnpm run start:dev"
   },
   "devDependencies": {
     "concurrently": "^9.0.0"
-  }
+  },
+  "packageManager": "pnpm@10.34.5",
+  "workspaces": [
+    "apps/*"
+  ]
 }
